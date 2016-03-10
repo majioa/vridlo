@@ -12,6 +12,7 @@ require 'database_cleaner'
 require 'capybara/rspec'
 require 'capybara/webkit'
 require 'shoulda/matchers'
+require 'ffaker'
 require 'pry'
 # Add additional requires below this line. Rails is not loaded until this point!
 
