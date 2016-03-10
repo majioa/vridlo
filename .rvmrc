@@ -1,18 +1,32 @@
-if [ -d "$(pwd)/.bundle" ]; then
-   info=$(rvm info)
-   ruby_version=$(echo "$info"|grep "^  ruby:" -A 6|grep " version"|sed "s/[^\"]*\"\([^\"]*\)\"/\1/")
-   if [ -z "$ruby_version" ]; then
-      ruby_path=$(echo "$info"|grep "^  homes:" -A 2|grep " ruby:"|sed "s/[^\"]*\"\([^\"]*\)\"/\1/")
-      ruby_version=$(basename "$ruby_path")
+info=$(rvm info)
+set -x
+ruby_version=$(echo "$info"|grep "^  ruby:" -A 6|grep " version"|sed "s/[^\"]*\"\([^\"]*\)\"/\1/")
+echo 1. $ruby_version
+if [ -z "$ruby_version" ]; then
+   ruby_path=$(echo "$info"|grep "^  homes:" -A 2|grep " ruby:"|sed "s/[^\"]*\"\([^\"]*\)\"/\1/")
+   ruby_version=$(basename "$ruby_path")
+   echo 2. $ruby_version
+fi
+ruby_gemset=$(basename $(pwd))
+if [ "$ruby_version" = 'not set' ]; then
+   # selecting first ruby
+   ruby_version=$(rvm list|grep rubies -A 2|grep "\[.*\]"|sed "s/.*\(ruby[^\[]\+\)\[.*/\1/")
+   echo 3. $ruby_version
+fi
+set -
+echo $ruby_version@$ruby_gemset
+rvm use $ruby_version@$ruby_gemset --create
+
+set -x
+if [ -z "$(echo "$PATH"|grep "$(pwd)/.bundle/bin")" ]; then
+   echo "Settings..."
+   if [ -z "$_ORIGINAL_GEM_PATH" ]; then
+      export _ORIGINAL_GEM_PATH=$GEM_PATH
    fi
-   ruby_gemset=$(basename $(pwd))
-   echo $ruby_version@$ruby_gemset
-   rvm use $reby_version@$ruby_gemset --create
-   export _ORIGINAL_GEM_PATH=$GEM_PATH
    export PATH=$(pwd)/.bundle/bin:$PATH
    export GEM_HOME=$(pwd)/.bundle
    export GEM_PATH=$GEM_HOME:$GEM_PATH
    bundler=$(gem which bundler)
    export RUBYLIB=$(dirname $bundler)
-   export RUBYOPT=-rbundler/setup
 fi
+set -
