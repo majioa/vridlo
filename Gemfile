@@ -32,9 +32,14 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+gem 'draper'
+
+gem 'slim-rails'
+
 group :development, :test do
    gem 'pry-rails'
    gem 'factory_girl_rails'
+   gem 'ffaker'
    gem 'spring'
    gem 'spring-commands-rspec'
 end
@@ -46,6 +51,5 @@ group :test do
    gem 'database_cleaner'
    gem 'capybara'
    gem 'capybara-webkit'
-   gem 'ffaker'
 end
 

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user do
-    name FFaker::Name.name
+    name { FFaker::Name.name }
   end
 
   factory :invalid_user, class: :User do
