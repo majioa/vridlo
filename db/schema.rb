@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2016_03_10_110750) do
+ActiveRecord::Schema.define(version: 2018_12_14_103128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "branches", force: :cascade do |t|
+    t.string "name", null: false, comment: "Имя ветви"
+    t.string "slug", null: false, comment: "Плашка ветви"
+    t.integer "srpms_count", default: 0, comment: "Счётчик уникальных исходных пакетов для ветви"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_branches_on_name", unique: true
+    t.index ["slug"], name: "index_branches_on_slug", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
