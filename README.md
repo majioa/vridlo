@@ -1,9 +1,9 @@
-=== RSpec / Spring
+## RSpec / Spring
 
     $ rails g rspec:install
     $ bundle exec spring binstub --all
 
-=== Models
+## Models
 
     $ rails g model User name:string
 
