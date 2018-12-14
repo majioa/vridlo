@@ -1,4 +1,6 @@
 class Branch < ApplicationRecord
+   has_many :rpm_sources
+
    scope :filled, -> { where.not(srpms_count: 0) }
 
    validates_presence_of :name, :slug

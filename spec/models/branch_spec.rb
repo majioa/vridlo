@@ -14,6 +14,10 @@ RSpec.describe Branch, type: :model do
       it { is_expected.to have_db_index(:slug).unique(true) }
    end
 
+   context "Associations" do
+      it { is_expected.to have_many(:rpm_sources) }
+   end
+
    context "Validations" do
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:slug) }
@@ -21,13 +25,10 @@ RSpec.describe Branch, type: :model do
 
    context "Scopes" do
       subject { Branch }
+
       let(:filled) { create(:branch, srpms_count: 100) }
 
-      before do
-         filled
-      end
-
-      it { expect(subject.filled).to match_array([filled]) }
+      it { expect { subject.filled }.to match_array([filled]) }
    end
 
    context "Questions" do

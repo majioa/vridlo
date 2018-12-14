@@ -7,7 +7,7 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'rspec/wait'
 require 'shoulda/matchers'
-require 'factory_girl'
+require 'factory_bot'
 require 'database_cleaner'
 require 'capybara/rspec'
 require 'capybara/webkit'
@@ -83,7 +83,7 @@ RSpec.configure do |config|
    # arbitrary gems may also be filtered via:
    # config.filter_gems_from_backtrace("gem name")
 
-   config.include FactoryGirl::Syntax::Methods
+   config.include FactoryBot::Syntax::Methods
    #config.include Devise::TestHelpers, type: :controller
    #config.include Devise::TestHelpers, type: :view
    config.wait_timeout = 3 # seconds, rspec-wait

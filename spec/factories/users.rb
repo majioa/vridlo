@@ -1,9 +1,9 @@
-FactoryGirl.define do
+FactoryBot.define do
    factory :user do
       name { FFaker::Name.name }
    end
 
    factory :invalid_user, class: :User do
-      name nil
+      name { nil }
    end
 end

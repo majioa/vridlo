@@ -46,7 +46,7 @@ gem 'slim-rails'
 group :development, :test do
    gem 'rspec-rails', '~> 3.8'
    gem 'pry-rails'
-   gem 'factory_girl_rails'
+   gem 'factory_bot_rails'
    gem 'faker'
    gem 'ffaker'
    gem 'spring'
