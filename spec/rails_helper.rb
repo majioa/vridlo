@@ -44,66 +44,66 @@ ActiveRecord::Base.extend(SingleDbConnectionPatch)
 Capybara.default_driver = :webkit
 Capybara.javascript_driver = :webkit
 Capybara::Webkit.configure do |config|
-   config.block_unknown_urls
+    config.block_unknown_urls
 end
 
 Shoulda::Matchers.configure do |config|
-   config.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-   end
+    config.integrate do |with|
+         with.test_framework :rspec
+         with.library :rails
+    end
 end
 
 RSpec.configure do |config|
-  # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
+   config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
-  # If you're not using ActiveRecord, or you'd prefer not to run each of your
-  # examples within a transaction, remove the following line or assign false
-  # instead of true.
-  config.use_transactional_fixtures = true
+   # If you're not using ActiveRecord, or you'd prefer not to run each of your
+   # examples within a transaction, remove the following line or assign false
+   # instead of true.
+   config.use_transactional_fixtures = true
 
-  # RSpec Rails can automatically mix in different behaviours to your tests
-  # based on their file location, for example enabling you to call `get` and
-  # `post` in specs under `spec/controllers`.
-  #
-  # You can disable this behaviour by removing the line below, and instead
-  # explicitly tag your specs with their type, e.g.:
-  #
-  #     RSpec.describe UsersController, :type => :controller do
-  #       # ...
-  #     end
-  #
-  # The different available types are documented in the features, such as in
-  # https://relishapp.com/rspec/rspec-rails/docs
-  config.infer_spec_type_from_file_location!
+   # RSpec Rails can automatically mix in different behaviours to your tests
+   # based on their file location, for example enabling you to call `get` and
+   # `post` in specs under `spec/controllers`.
+   #
+   # You can disable this behaviour by removing the line below, and instead
+   # explicitly tag your specs with their type, e.g.:
+   #
+   #       RSpec.describe UsersController, :type => :controller do
+   #          # ...
+   #       end
+   #
+   # The different available types are documented in the features, such as in
+   # https://relishapp.com/rspec/rspec-rails/docs
+   config.infer_spec_type_from_file_location!
 
-  # Filter lines from Rails gems in backtraces.
-  config.filter_rails_from_backtrace!
-  # arbitrary gems may also be filtered via:
-  # config.filter_gems_from_backtrace("gem name")
+   # Filter lines from Rails gems in backtraces.
+   config.filter_rails_from_backtrace!
+   # arbitrary gems may also be filtered via:
+   # config.filter_gems_from_backtrace("gem name")
 
-  config.include FactoryGirl::Syntax::Methods
-  #config.include Devise::TestHelpers, type: :controller
-  #config.include Devise::TestHelpers, type: :view
-  config.wait_timeout = 3 # seconds, rspec-wait
+   config.include FactoryGirl::Syntax::Methods
+   #config.include Devise::TestHelpers, type: :controller
+   #config.include Devise::TestHelpers, type: :view
+   config.wait_timeout = 3 # seconds, rspec-wait
 
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
+   config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+   end
 
-#  config.before(:each, type: :controller) do |example|
-#    @request.env["devise.mapping"] = Devise.mappings[:user]
-#  end
+#   config.before(:each, type: :controller) do |example|
+#      @request.env["devise.mapping"] = Devise.mappings[:user]
+#   end
 
-  config.before(:each) do |example|
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
-  end
+   config.before(:each) do |example|
+      DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+   end
 
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
+   config.around(:each) do |example|
+      DatabaseCleaner.cleaning do
+         example.run
+      end
+   end
 end
