@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
+ruby '2.5.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.5.2'
+gem 'rails', '~> 5.2.2'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -10,7 +11,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -42,20 +43,20 @@ gem 'draper'
 
 gem 'slim-rails'
 
-gem 'avl_tree'
-
 group :development, :test do
+   gem 'rspec-rails', '~> 3.8'
    gem 'pry-rails'
    gem 'factory_girl_rails'
    gem 'faker'
+   gem 'ffaker'
    gem 'spring'
    gem 'spring-commands-rspec'
 end
 
 group :test do
-   gem 'rspec-rails', '~> 3.1'
+   gem 'rails-controller-testing'
    gem 'rspec-wait'
-   gem 'shoulda-matchers', '~> 3.1.1'
+   gem 'shoulda-matchers', '~> 4.0.0.rc1'
    gem 'database_cleaner'
    gem 'capybara'
    gem 'capybara-webkit'
