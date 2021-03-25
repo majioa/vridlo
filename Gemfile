@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.5.1'
+ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4', '>= 5.2.4.3'
+gem 'rails', '~> 5.2.4', '>= 5.2.4.5'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -28,7 +28,7 @@ gem 'sdoc', '~> 1.0.0', group: :doc
 gem 'rails-html-sanitizer', '~> 1.0.4'
 
 # Fix CVEs
-gem 'nokogiri', '~> 1.10.8'
+gem 'nokogiri', '~> 1.11'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
